@@ -1,0 +1,25 @@
+{
+  "name": "techapi/ultron-lib",
+  "description": "Integração com o sistema Ultron para autenticação de parceiros",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Ultron\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.2",
+    "illuminate/support": "^11.0 || ^12.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ultron\\Providers\\UltronServiceProvider"
+      ],
+      "aliases": {
+        "Ultron": "Ultron\\Facades\\Ultron"
+      }
+    }
+  }
+}
