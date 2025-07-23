@@ -18,7 +18,8 @@
         "Ultron\\Providers\\UltronServiceProvider"
       ],
       "aliases": {
-        "Ultron": "Ultron\\Facades\\Ultron"
+        "Ultron": "Ultron\\Facades\\Ultron",
+        "Jarvis": "Jarvis\\Facades\\Jarvis"
       }
     }
   }
