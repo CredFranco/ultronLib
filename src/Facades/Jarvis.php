@@ -8,6 +8,6 @@
     {
         protected static function getFacadeAccessor()
         {
-            return \Ultron\UltronRepository::class;
+            return \Jarvis\JarvisRepository::class;
         }
     }

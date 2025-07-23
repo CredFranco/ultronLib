@@ -6,10 +6,6 @@ use Illuminate\Support\Facades\Log;
 
 trait Auth
 {
-    protected array $possibles = [
-            "broker",
-            "internal"
-    ];
 
     public function auth(string $username, string $password): mixed
     {

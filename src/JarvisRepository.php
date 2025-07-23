@@ -6,41 +6,41 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use Ultron\Traits\AuthManagement;
-use Ultron\Traits\BrokersManagement;
+use Jarvis\TraitsJarvis\Auth;
 
 class JarvisRepository
 {
-    use AuthManagement, BrokersManagement;
+    use Auth;
 
     protected mixed $url = '';
     protected mixed $ultron_key = '';
+    protected array $headers = [];
 
     public function __construct()
     {
-        $this->url = env('URL_SERVICE_ULTRON');
+        $this->url = env('MANAGEMENT_URL');
         if(is_null($this->url) || empty($this->url)){
-            throw new \Exception("URL do serviço do Ultron não encontrada.");
-        }
-        // $this->ultron_key = config('ultron_key');
-        $this->ultron_key = env('ULTRON_KEY');
-
-        if(is_null($this->ultron_key) || empty($this->ultron_key)){
-            throw new \Exception("Chave de acesso do Ultron não encontrada");
+            throw new \Exception("URL do serviço do Jarvis não encontrada.");
         }
     }
 
-    public function postRequest(string $uri, array $body = [])
+    public function postRequest(string $uri, array $body = [], $token = null)
     {
-        return Http::withHeaders([
-            'application-key' => $this->ultron_key,
-        ])->post("{$this->url}/api/{$uri}", $body);
+        if(!is_null($token)){
+            $this->headers = [
+                'Authorization' => "Bearer {$token}"
+            ];
+        }
+        return Http::withHeaders($this->headers)->post("{$this->url}/api/{$uri}", $body);
     }
 
-    public function getRequest(string $uri)
+    public function getRequest(string $uri, $token = null)
     {
-        return Http::withHeaders([
-            'application-key' => $this->ultron_key,
-        ])->get("{$this->url}/api/{$uri}");
+        if(!is_null($token)){
+            $this->headers = [
+                'Authorization' => "Bearer {$token}"
+            ];
+        }
+        return Http::withHeaders($this->headers)->get("{$this->url}/api/{$uri}");
     }
 }
