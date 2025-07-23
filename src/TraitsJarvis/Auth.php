@@ -17,7 +17,7 @@ trait Auth
         if (!$response->successful()) {
             return [
                 "status"    =>  false,
-                "responde"  =>  $response->json()['response']
+                "response"  =>  $response->json()['response']
             ];
         }
 
