@@ -22,6 +22,10 @@ class JarvisRepository
         if(is_null($this->url) || empty($this->url)){
             throw new \Exception("URL do serviço do Jarvis não encontrada.");
         }
+        $this->headers = [
+            'access-token'  =>  env('ACCESS-TOKEN', ''),
+            'private-token' =>  env('PRIVATE-TOKEN', '')
+        ];
     }
 
     public function postRequest(string $uri, array $body = [], $token = null)
