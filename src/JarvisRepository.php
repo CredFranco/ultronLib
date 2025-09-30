@@ -27,7 +27,7 @@ class JarvisRepository
     public function postRequest(string $uri, array $body = [], $token = null)
     {
         if(!is_null($token)){
-            $this->headers = [
+            $this->headers = [...$this->headers,
                 'Authorization' => "Bearer {$token}"
             ];
         }
