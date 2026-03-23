@@ -27,7 +27,7 @@ trait Branches
 
         return [
             "status"    =>  true,
-            "responde"  =>  "Operações consultadas com sucesso",
+            "responde"  =>  "Filiais consultadas com sucesso",
             "data"      =>  $response->json()['data']
         ];
     }

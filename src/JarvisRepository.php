@@ -6,12 +6,20 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use Jarvis\TraitsJarvis\Agreements;
 use Jarvis\TraitsJarvis\Auth;
+use Jarvis\TraitsJarvis\Banks;
+use Jarvis\TraitsJarvis\Products;
+use Jarvis\TraitsJarvis\Branches;
 
 class JarvisRepository
 {
     use Auth;
-
+    use Banks;
+    use Products;
+    use Agreements;
+    use Branches;
+    
     protected mixed $url = '';
     protected mixed $ultron_key = '';
     protected array $headers = [];
