@@ -5,21 +5,29 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Ultron\\": "src/"
+      "Ultron\\": "src/",
+      "Jarvis\\": "src/",
+      "Atlas\\": "src/"
     }
   },
   "require": {
     "php": "^8.2",
     "illuminate/support": "^11.0 || ^12.0"
   },
+  "conflict": {
+    "illuminate/support": ">=13.0"
+  },
   "extra": {
     "laravel": {
       "providers": [
-        "Ultron\\Providers\\UltronServiceProvider"
+        "Ultron\\Providers\\UltronServiceProvider",
+        "Jarvis\\Providers\\JarvisServiceProvider",
+        "Atlas\\Providers\\AtlasServiceProvider"
       ],
       "aliases": {
         "Ultron": "Ultron\\Facades\\Ultron",
-        "Jarvis": "Jarvis\\Facades\\Jarvis"
+        "Jarvis": "Jarvis\\Facades\\Jarvis",
+        "Atlas": "Atlas\\Facades\\Atlas"
       }
     }
   }

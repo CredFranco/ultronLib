@@ -1,15 +1,15 @@
 <?php
-    namespace Jarvis\Providers;
+    namespace Atlas\Providers;
 
+    use Atlas\AtlasRepository;
     use Illuminate\Support\ServiceProvider;
-    use Jarvis\JarvisRepository;
 
-    class JarvisServiceProvider extends ServiceProvider
+    class AtlasServiceProvider extends ServiceProvider
     {
         public function register()
         {
-            $this->app->singleton('jarvis', function () {
-                return new JarvisRepository();
+            $this->app->singleton('atlas', function () {
+                return new AtlasRepository();
             });
         }
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Jarvis;
+namespace Atlas;
 
 use Illuminate\Support\Facades\Http;
-use Jarvis\Traits\Jarvis\Auth;
+use Atlas\Traits\Atlas\Auth;
 
-class JarvisRepository
+class AtlasRepository
 {
     use Auth;
 
@@ -13,14 +13,18 @@ class JarvisRepository
 
     // protected string $token = '';
 
-    protected array $headers = [];
+    protected array $headers = [
+    ];
 
     public function __construct()
     {
-        $this->url = env('MANAGEMENT_URL');
+        $this->url = env('ATLAS_URL');
         if (is_null($this->url) || empty($this->url)) {
-            throw new \Exception('URL do serviço do Jarvis não encontrada.');
+            throw new \Exception('URL do serviço do Atlas não encontrada.');
         }
+
+        $this->headers['X-Client-Token'] = env('ATLAS_CLIENT_TOKEN');
+        $this->headers['X-Client'] = 'ultron-lib';
     }
 
     public function postRequest(string $uri, array $body = [], $token = null, bool $jsonDecode = false)
