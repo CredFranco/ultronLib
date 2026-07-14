@@ -1,20 +1,23 @@
 <?php
-    namespace Jarvis\Providers;
 
-    use Illuminate\Support\ServiceProvider;
-    use Jarvis\JarvisRepository;
+namespace Jarvis\Providers;
 
-    class JarvisServiceProvider extends ServiceProvider
+use Illuminate\Support\ServiceProvider;
+use Jarvis\JarvisRepository;
+
+class JarvisServiceProvider extends ServiceProvider
+{
+    public function register()
     {
-        public function register()
-        {
-            $this->app->singleton('jarvis', function () {
-                return new JarvisRepository();
-            });
-        }
+        $this->mergeConfigFrom(__DIR__.'/../../config/ultron-lib.php', 'ultron-lib');
 
-        public function boot()
-        {
-            // Se quiser publicar configs no futuro
-        }
+        $this->app->singleton('jarvis', function () {
+            return new JarvisRepository();
+        });
     }
+
+    public function boot()
+    {
+        //
+    }
+}

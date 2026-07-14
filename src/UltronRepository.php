@@ -18,15 +18,14 @@ class UltronRepository
 
     public function __construct()
     {
-        $this->url = env('URL_SERVICE_ULTRON');
-        if(is_null($this->url) || empty($this->url)){
-            throw new \Exception("URL do serviço do Ultron não encontrada.");
+        $this->url = config('ultron-lib.ultron.url');
+        if (is_null($this->url) || empty($this->url)) {
+            throw new \Exception('URL do serviço do Ultron não encontrada.');
         }
-        // $this->ultron_key = config('ultron_key');
-        $this->ultron_key = env('ULTRON_KEY');
 
-        if(is_null($this->ultron_key) || empty($this->ultron_key)){
-            throw new \Exception("Chave de acesso do Ultron não encontrada");
+        $this->ultron_key = config('ultron-lib.ultron.key');
+        if (is_null($this->ultron_key) || empty($this->ultron_key)) {
+            throw new \Exception('Chave de acesso do Ultron não encontrada');
         }
     }
 

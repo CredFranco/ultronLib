@@ -18,12 +18,12 @@ class AtlasRepository
 
     public function __construct()
     {
-        $this->url = env('ATLAS_URL');
+        $this->url = config('ultron-lib.atlas.url');
         if (is_null($this->url) || empty($this->url)) {
             throw new \Exception('URL do serviço do Atlas não encontrada.');
         }
 
-        $this->headers['X-Client-Token'] = env('ATLAS_CLIENT_TOKEN');
+        $this->headers['X-Client-Token'] = config('ultron-lib.atlas.client_token');
         $this->headers['X-Client'] = 'ultron-lib';
     }
 

@@ -1,20 +1,23 @@
 <?php
-    namespace Atlas\Providers;
 
-    use Atlas\AtlasRepository;
-    use Illuminate\Support\ServiceProvider;
+namespace Atlas\Providers;
 
-    class AtlasServiceProvider extends ServiceProvider
+use Atlas\AtlasRepository;
+use Illuminate\Support\ServiceProvider;
+
+class AtlasServiceProvider extends ServiceProvider
+{
+    public function register()
     {
-        public function register()
-        {
-            $this->app->singleton('atlas', function () {
-                return new AtlasRepository();
-            });
-        }
+        $this->mergeConfigFrom(__DIR__.'/../../config/ultron-lib.php', 'ultron-lib');
 
-        public function boot()
-        {
-            // Se quiser publicar configs no futuro
-        }
+        $this->app->singleton('atlas', function () {
+            return new AtlasRepository();
+        });
     }
+
+    public function boot()
+    {
+        //
+    }
+}

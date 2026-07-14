@@ -17,7 +17,7 @@ class JarvisRepository
 
     public function __construct()
     {
-        $this->url = env('MANAGEMENT_URL');
+        $this->url = config('ultron-lib.jarvis.url');
         if (is_null($this->url) || empty($this->url)) {
             throw new \Exception('URL do serviço do Jarvis não encontrada.');
         }

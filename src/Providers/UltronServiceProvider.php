@@ -1,20 +1,25 @@
 <?php
-    namespace Ultron\Providers;
 
-    use Illuminate\Support\ServiceProvider;
-    use Ultron\UltronRepository;
+namespace Ultron\Providers;
 
-    class UltronServiceProvider extends ServiceProvider
+use Illuminate\Support\ServiceProvider;
+use Ultron\UltronRepository;
+
+class UltronServiceProvider extends ServiceProvider
+{
+    public function register()
     {
-        public function register()
-        {
-            $this->app->singleton('ultron', function () {
-                return new UltronRepository();
-            });
-        }
+        $this->mergeConfigFrom(__DIR__.'/../../config/ultron-lib.php', 'ultron-lib');
 
-        public function boot()
-        {
-            // Se quiser publicar configs no futuro
-        }
+        $this->app->singleton('ultron', function () {
+            return new UltronRepository();
+        });
     }
+
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../../config/ultron-lib.php' => config_path('ultron-lib.php'),
+        ], 'ultron-lib-config');
+    }
+}
